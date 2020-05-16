@@ -30,7 +30,36 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1 -pthread -march=native")
 
 ADD_EXECUTABLE(test.exe test.cpp 
     parser_declarations.cpp
-    parser_instantiation.cpp
+
+    character_literal_def.cpp
+    compound_statement_def.cpp
+    control_block_body_def.cpp
+    control_statement_def.cpp
+    declaration_def.cpp
+    dictionary_def.cpp
+    enumeration_definition_def.cpp
+    expression_def.cpp
+    for_loop_def.cpp
+    function_definition_def.cpp
+    identifier_def.cpp
+    identifier_sequence_def.cpp
+    if_else_statement_def.cpp
+    invocation_def.cpp
+    let_policy_def.cpp
+    let_statement_def.cpp
+    list_def.cpp
+    literal_def.cpp
+    namespace_extension_def.cpp
+    namespace_scope_def.cpp
+    parameter_pack_def.cpp
+    set_policy_def.cpp
+    set_statement_def.cpp
+    statement_def.cpp
+    statement_terminator_def.cpp
+    string_literal_def.cpp
+    structure_definition_def.cpp
+    switch_statement_def.cpp
+    while_loop_def.cpp
 )
 ADD_CUSTOM_COMMAND(OUTPUT .tidy-all
     COMMAND run-clang-tidy-9 -fix -header-filter='.*' -checks='*'
