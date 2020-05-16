@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static invocation_type invocation_ = "";
+    static invocation_type invocation_ = "invocation";
     static auto invocation__def = '(' > +expression() > ')';
     BOOST_SPIRIT_DEFINE(invocation_);
 } // namespace parser

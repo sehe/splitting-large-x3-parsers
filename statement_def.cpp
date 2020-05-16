@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static statement_type statement_ = "";
+    static statement_type statement_ = "statement";
     static auto statement__def = (expression() | declaration() | control_statement() | set_statement()) > statement_terminator();
     BOOST_SPIRIT_DEFINE(statement_);
 } // namespace parser

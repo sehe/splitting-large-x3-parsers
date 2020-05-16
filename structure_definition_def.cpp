@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static structure_definition_type structure_definition_ = "";
+    static structure_definition_type structure_definition_ = "structure_definition";
     static auto structure_definition__def = "" > identifier() > namespace_scope();
     BOOST_SPIRIT_DEFINE(structure_definition_);
 } // namespace parser

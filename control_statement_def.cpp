@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static control_statement_type control_statement_ = "";
+    static control_statement_type control_statement_ = "control_statement";
     static auto control_statement__def = for_loop() | while_loop() | if_else_statement() | switch_statement();
     BOOST_SPIRIT_DEFINE(control_statement_);
 } // namespace parser

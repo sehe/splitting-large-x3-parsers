@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static identifier_sequence_type identifier_sequence_ = "";
+    static identifier_sequence_type identifier_sequence_ = "identifier_sequence";
     static auto identifier_sequence__def = +identifier();
     BOOST_SPIRIT_DEFINE(identifier_sequence_);
 } // namespace parser

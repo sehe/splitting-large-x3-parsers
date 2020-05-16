@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static string_literal_type string_literal_ = "";
+    static string_literal_type string_literal_ = "string_literal";
     static auto string_literal__def = x3::lexeme['"' > *('\\' >> x3::char_ | ~x3::char_('"')) > '"'];
 #if 0
     template <typename Iterator, typename Context, typename Attribute>

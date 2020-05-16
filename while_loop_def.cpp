@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static while_loop_type while_loop_ = "";
+    static while_loop_type while_loop_ = "while_loop";
     static auto while_loop__def = "" > expression() > control_block_body();
     BOOST_SPIRIT_DEFINE(while_loop_);
 } // namespace parser

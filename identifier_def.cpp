@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static identifier_type identifier_ = "";
+    static identifier_type identifier_ = "identifier";
     static auto identifier__def = x3::lexeme[(x3::alpha | x3::char_('_')) >> *(x3::alnum | x3::char_('_'))];
     BOOST_SPIRIT_DEFINE(identifier_);
 } // namespace parser

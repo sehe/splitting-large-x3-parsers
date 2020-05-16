@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static for_loop_type for_loop_ = "";
+    static for_loop_type for_loop_ = "for_loop";
     static auto for_loop__def = "" > identifier() > "" > expression() > control_block_body();
     BOOST_SPIRIT_DEFINE(for_loop_);
 } // namespace parser

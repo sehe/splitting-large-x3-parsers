@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static parameter_pack_type parameter_pack_ = "";
+    static parameter_pack_type parameter_pack_ = "parameter_pack";
     static auto parameter_pack__def = +expression();
     BOOST_SPIRIT_DEFINE(parameter_pack_);
 } // namespace parser

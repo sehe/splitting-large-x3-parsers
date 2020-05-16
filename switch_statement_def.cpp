@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static switch_statement_type switch_statement_ = "";
+    static switch_statement_type switch_statement_ = "switch_statement";
     static auto switch_statement__def = "" > expression() > '{' > *("" > expression() > control_block_body()) > '}';
     BOOST_SPIRIT_DEFINE(switch_statement_);
 } // namespace parser

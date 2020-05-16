@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static compound_statement_type compound_statement_ = "";
+    static compound_statement_type compound_statement_ = "compound_statement";
     static auto compound_statement__def = '{' > *statement() > '}';
     BOOST_SPIRIT_DEFINE(compound_statement_);
 } // namespace parser

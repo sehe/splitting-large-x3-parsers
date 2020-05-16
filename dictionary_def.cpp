@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static dictionary_type dictionary_ = "";
+    static dictionary_type dictionary_ = "dictionary";
     static auto dictionary__def = '{' > *(expression() > ':' > expression()) > '}';
     BOOST_SPIRIT_DEFINE(dictionary_);
 } // namespace parser

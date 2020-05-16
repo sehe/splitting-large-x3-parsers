@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static expression_type expression_ = "";
+    static expression_type expression_ = "expression";
     static auto expression__def = literal() | identifier() | invocation();
     BOOST_SPIRIT_DEFINE(expression_);
 } // namespace parser

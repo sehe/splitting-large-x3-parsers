@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static list_type list_ = "";
+    static list_type list_ = "list";
     static auto list__def = '[' > *expression() > ']';
     BOOST_SPIRIT_DEFINE(list_);
 } // namespace parser

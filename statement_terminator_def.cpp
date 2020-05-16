@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static statement_terminator_type statement_terminator_ = "";
+    static statement_terminator_type statement_terminator_ = "statement_terminator";
     static auto statement_terminator__def = x3::string("") | x3::string("") | x3::string("");
     BOOST_SPIRIT_DEFINE(statement_terminator_);
 } // namespace parser

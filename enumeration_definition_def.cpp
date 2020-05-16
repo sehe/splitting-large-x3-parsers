@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static enumeration_definition_type enumeration_definition_ = "";
+    static enumeration_definition_type enumeration_definition_ = "enumeration_definition";
     static auto enumeration_definition__def = "" > identifier() > '{' > *(identifier() > ('=' > x3::int_)) > '}';
     BOOST_SPIRIT_DEFINE(enumeration_definition_);
 } // namespace parser

@@ -2,7 +2,7 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    static namespace_extension_type namespace_extension_ = "";
+    static namespace_extension_type namespace_extension_ = "namespace_extension";
     static auto namespace_extension__def = "" > identifier() > namespace_scope();
     BOOST_SPIRIT_DEFINE(namespace_extension_);
 } // namespace parser
