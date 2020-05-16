@@ -1,7 +1,8 @@
 #pragma once
 
-#include "utilities.hpp"
-
+//#include "utilities.hpp"
+#include <boost/spirit/home/x3.hpp>
+namespace x3 = boost::spirit::x3;
 
 namespace parser {
     using iterator_type = std::string::iterator;
