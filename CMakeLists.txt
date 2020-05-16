@@ -1,0 +1,42 @@
+# vim: se fdm=marker
+cmake_minimum_required(VERSION 3.5)
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+SET(BOOST_DIR /home/sehe/custom/boost_1_72_0)
+INCLUDE_DIRECTORIES(SYSTEM ${BOOST_DIR})
+LINK_DIRECTORIES("${BOOST_DIR}/stage/lib")
+
+#set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH "${BOOST_DIR}/stage/lib")
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+set(CMAKE_SKIP_RPATH FALSE)
+
+#SET(CMAKE_C_COMPILER gcc-10)
+#SET(CMAKE_CXX_COMPILER g++-10) # // clang++-3.8 clang++-5.0 g++-5 iwyu
+SET(CMAKE_CXX_COMPILER clang++-9) # // clang++-3.8 clang++-5.0 g++-5 iwyu
+#set(CMAKE_CXX_CLANG_TIDY clang-tidy-9 -checks=-*,readability-*)
+SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--disable-new-dtags")
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic ") # -Wconversion
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a ") # -fcoroutines ")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function -Wno-unused")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1 -pthread -march=native")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-var-tracking-assignments")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -fno-omit-frame-pointer -O0 -pthread -march=x86-64")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftemplate-depth=19000")
+
+ADD_EXECUTABLE(test.exe test.cpp 
+    parser_declarations.cpp
+    parser_instantiation.cpp
+)
+ADD_CUSTOM_COMMAND(OUTPUT .tidy-all
+    COMMAND run-clang-tidy-9 -fix -header-filter='.*' -checks='*'
+)
+ADD_CUSTOM_TARGET(tidy-all DEPENDS .tidy-all)
+ADD_CUSTOM_COMMAND(OUTPUT .stamp
+    COMMAND run-clang-tidy-9 -fix -header-filter='.*' -checks='-*,readability-*'
+)
+ADD_CUSTOM_TARGET(tidy DEPENDS .stamp)

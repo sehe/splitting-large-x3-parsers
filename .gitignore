@@ -1,0 +1,12 @@
+.*.sw?
+*.o
+tags
+test.exe
+output.*
+NetrwTreeListing*
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+compile_commands.json
+Session.vim
