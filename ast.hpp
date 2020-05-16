@@ -34,9 +34,9 @@ namespace {
         >;
 }
 
-#define DEFINE_ATTRIBUTE(name, ...)                                            \
-    struct name : alias<class name##_base_access_tag, __VA_ARGS__> {           \
-        using base::base, name::base::operator=;                               \
+#define DEFINE_ATTRIBUTE(name, ...)                                     \
+    struct name : alias<class name##_base_access_tag, __VA_ARGS__> {    \
+        using base::base, base::operator=;                              \
     };
 
 namespace ast {
@@ -54,7 +54,6 @@ namespace ast {
     DEFINE_ATTRIBUTE(expression    , x3::variant<literal, identifier, invocation>);
     DEFINE_ATTRIBUTE(list          , std::vector<expression>);
     DEFINE_ATTRIBUTE(dictionary    , std::vector<fusion::vector<expression, expression>>);
-
 
     struct statement;
     struct declaration;
