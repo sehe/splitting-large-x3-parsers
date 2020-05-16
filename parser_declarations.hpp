@@ -41,3 +41,16 @@ DECLARE_PARSER(switch_statement);
 DECLARE_PARSER(control_statement);
 DECLARE_PARSER(statement_terminator);
 DECLARE_PARSER(statement);
+
+// TODO remove
+#define DEFINE_PARSER(name, text, definition) \
+namespace parser {                            \
+    const name ## _type name ## _ = text;     \
+    const auto name ## __def = definition;    \
+                                              \
+    BOOST_SPIRIT_DEFINE(name ## _);           \
+}                                             \
+parser::name ## _type name() {                \
+    return parser::name ## _;                 \
+}
+

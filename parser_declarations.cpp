@@ -1,18 +1,6 @@
 #include "ast.hpp"
 #include "parser_declarations.hpp"
 
-
-#define DEFINE_PARSER(name, text, definition) \
-namespace parser {                            \
-    const name ## _type name ## _ = text;     \
-    const auto name ## __def = definition;    \
-                                              \
-    BOOST_SPIRIT_DEFINE(name ## _);           \
-}                                             \
-parser::name ## _type name() {                \
-    return parser::name ## _;                 \
-}
-
 DEFINE_PARSER(string_literal   , "", x3::lexeme[ '"' > *('\\' >> x3::char_ | ~x3::char_('"')) > '"']);
 DEFINE_PARSER(character_literal, "", x3::lexeme[ "'" > ('\\' >> x3::char_ | ~x3::char_("'")) >"'"]);
 DEFINE_PARSER(identifier       , "", x3::lexeme[(x3::alpha | x3::char_('_')) >> *(x3::alnum | x3::char_('_'))]);
@@ -22,7 +10,6 @@ DEFINE_PARSER(invocation       , "", '(' > +expression() > ')');
 DEFINE_PARSER(expression       , "", literal() | identifier() | invocation());
 DEFINE_PARSER(list             , "", '[' > *expression() > ']');
 DEFINE_PARSER(dictionary       , "", '{' > *(expression() > ':' > expression()) > '}');
-
 
 DEFINE_PARSER(compound_statement, "", '{' > *statement() > '}');
 DEFINE_PARSER(control_block_body, "", (':' > statement()) | compound_statement());
