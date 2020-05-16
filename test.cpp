@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <fstream>
 #include "parser_declarations.hpp"
+#include "parser_configuration.hpp"
 namespace x3 = boost::spirit::x3;
 
 template <typename Rule>
@@ -11,7 +12,8 @@ void exercise(Rule const& rule, std::string const& str) {
     try {
         std::cout << std::quoted(str) << " with rule " << std::quoted(rule.name) << " -> ";
         
-        bool const ok = x3::phrase_parse(f, l, rule, x3::ascii::space);
+        typename Rule::attribute_type attr;
+        bool const ok = x3::phrase_parse(f, l, rule, x3::ascii::space, attr);
         std::cout << std::boolalpha << ok;
 
         if (f != l) {
@@ -28,33 +30,33 @@ void exercise(Rule const& rule, std::string const& str) {
 }
 
 int main() {
-    exercise(string_literal(), R"("hello")");
-    exercise(identifier(), "identify_me");
+    exercise(parser::string_literal(), R"("hello")");
+    exercise(parser::identifier(), "identify_me");
 
 #if 0
-    exercise(literal_       , "");
-    exercise(parameter_pack_, "");
-    exercise(invocation_    , "");
-    exercise(expression_    , "");
-    exercise(list_          , "");
-    exercise(dictionary_    , "");
+    exercise(parser::literal_       , "");
+    exercise(parser::parameter_pack_, "");
+    exercise(parser::invocation_    , "");
+    exercise(parser::expression_    , "");
+    exercise(parser::list_          , "");
+    exercise(parser::dictionary_    , "");
 
-    exercise(compound_statement_, "");
-    exercise(control_block_body_, "");
-    exercise(identifier_sequence_, "");
-    exercise(function_definition_, "");
-    exercise(structure_definition_, "");
-    exercise(enumeration_definition_, "");
-    exercise(namespace_scope_, "");
-    exercise(namespace_extension_, "");
-    exercise(declaration_, "");
-    exercise(for_loop_, "");
-    exercise(while_loop_, "");
-    exercise(if_else_statement_, "");
-    exercise(switch_statement_, "");
-    exercise(control_statement_, "");
-    exercise(statement_terminator_, "");
-    exercise(statement_, "");
+    exercise(parser::compound_statement_, "");
+    exercise(parser::control_block_body_, "");
+    exercise(parser::identifier_sequence_, "");
+    exercise(parser::function_definition_, "");
+    exercise(parser::structure_definition_, "");
+    exercise(parser::enumeration_definition_, "");
+    exercise(parser::namespace_scope_, "");
+    exercise(parser::namespace_extension_, "");
+    exercise(parser::declaration_, "");
+    exercise(parser::for_loop_, "");
+    exercise(parser::while_loop_, "");
+    exercise(parser::if_else_statement_, "");
+    exercise(parser::switch_statement_, "");
+    exercise(parser::control_statement_, "");
+    exercise(parser::statement_terminator_, "");
+    exercise(parser::statement_, "");
 #else
     {
         std::ifstream ifs("filename");

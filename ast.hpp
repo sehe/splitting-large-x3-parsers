@@ -4,6 +4,7 @@
 #include <boost/spirit/home/x3/support/ast/variant.hpp>
 #include <boost/spirit/home/x3/support/ast/position_tagged.hpp>
 #include <boost/fusion/include/vector.hpp>
+#include <boost/fusion/adapted.hpp>
 namespace x3 = boost::spirit::x3;
 namespace fusion = boost::fusion;
 
@@ -40,6 +41,7 @@ namespace {
     };
 
 namespace ast {
+
     DEFINE_ATTRIBUTE(string_literal   , std::string);
     DEFINE_ATTRIBUTE(character_literal, std::string);
     DEFINE_ATTRIBUTE(identifier       , std::string);
@@ -63,7 +65,15 @@ namespace ast {
     DEFINE_ATTRIBUTE(identifier_sequence   , std::vector<identifier>);
     DEFINE_ATTRIBUTE(function_definition   , fusion::vector<identifier, std::vector<identifier>, control_block_body>);
     DEFINE_ATTRIBUTE(structure_definition  , fusion::vector<identifier, std::vector<declaration>>);
+#if 1
     DEFINE_ATTRIBUTE(enumeration_definition, fusion::vector<identifier, std::vector<fusion::vector<identifier, int>>>);
+#else
+    struct enumeration_definition : x3::position_tagged {
+        identifier id;
+        struct member { identifier id; int value; };
+        std::vector<member> members;
+    };
+#endif
     DEFINE_ATTRIBUTE(namespace_scope       , std::vector<declaration>);
     DEFINE_ATTRIBUTE(namespace_extension   , fusion::vector<identifier, namespace_scope>);
     DEFINE_ATTRIBUTE(let_policy            , std::string);
@@ -79,3 +89,6 @@ namespace ast {
     DEFINE_ATTRIBUTE(statement_terminator  , std::string);
     DEFINE_ATTRIBUTE(statement             , fusion::vector<x3::variant<expression, declaration, control_statement, set_statement>, statement_terminator>);
 }
+
+//BOOST_FUSION_ADAPT_STRUCT(ast::enumeration_definition::member, id, value)
+//BOOST_FUSION_ADAPT_STRUCT(ast::enumeration_definition, id, members)

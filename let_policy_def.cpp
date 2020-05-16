@@ -2,12 +2,12 @@
 #include "parser_configuration.hpp"
 
 namespace parser {
-    const let_policy_type let_policy_ = "";
-    const auto let_policy__def = x3::string("") | x3::string("");
+    static let_policy_type let_policy_ = "";
+    static auto let_policy__def = x3::string("") | x3::string("");
     BOOST_SPIRIT_DEFINE(let_policy_);
 } // namespace parser
-parser::let_policy_type let_policy() { return parser::let_policy_; };
 
 namespace parser {
     BOOST_SPIRIT_INSTANTIATE(let_policy_type, iterator_type, context_type);
+    parser::let_policy_type let_policy() { return parser::let_policy_; };
 }
