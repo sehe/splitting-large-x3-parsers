@@ -33,34 +33,31 @@ int main() {
     exercise(parser::string_literal(), R"("hello")");
     exercise(parser::identifier(), "identify_me");
 
-#if 0
-    exercise(parser::literal_       , "");
-    exercise(parser::parameter_pack_, "");
-    exercise(parser::invocation_    , "");
-    exercise(parser::expression_    , "");
-    exercise(parser::list_          , "");
-    exercise(parser::dictionary_    , "");
+    exercise(parser::literal(),                "");
+    exercise(parser::parameter_pack(),         "");
+    exercise(parser::invocation(),             "");
+    exercise(parser::expression(),             "");
+    exercise(parser::list(),                   "");
+    exercise(parser::dictionary(),             "");
 
-    exercise(parser::compound_statement_, "");
-    exercise(parser::control_block_body_, "");
-    exercise(parser::identifier_sequence_, "");
-    exercise(parser::function_definition_, "");
-    exercise(parser::structure_definition_, "");
-    exercise(parser::enumeration_definition_, "");
-    exercise(parser::namespace_scope_, "");
-    exercise(parser::namespace_extension_, "");
-    exercise(parser::declaration_, "");
-    exercise(parser::for_loop_, "");
-    exercise(parser::while_loop_, "");
-    exercise(parser::if_else_statement_, "");
-    exercise(parser::switch_statement_, "");
-    exercise(parser::control_statement_, "");
-    exercise(parser::statement_terminator_, "");
-    exercise(parser::statement_, "");
-#else
+    exercise(parser::compound_statement(),     "");
+    exercise(parser::control_block_body(),     "");
+    exercise(parser::identifier_sequence(),    "");
+    exercise(parser::function_definition(),    "");
+    exercise(parser::structure_definition(),   "");
+    exercise(parser::enumeration_definition(), "");
+    exercise(parser::namespace_scope(),        "");
+    exercise(parser::namespace_extension(),    "");
+    exercise(parser::declaration(),            "");
+    exercise(parser::for_loop(),               "");
+    exercise(parser::while_loop(),             "");
+    exercise(parser::if_else_statement(),      "");
+    exercise(parser::switch_statement(),       "");
+    exercise(parser::control_statement(),      "");
+    exercise(parser::statement_terminator(),   "");
+    exercise(parser::statement(),              "");
     {
         std::ifstream ifs("filename");
-        //exercise(statement_, {std::istreambuf_iterator(ifs), {}});
+        exercise(parser::statement(), {std::istreambuf_iterator(ifs), {}});
     }
-#endif
 }

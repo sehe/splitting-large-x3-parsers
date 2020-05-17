@@ -21,11 +21,11 @@ SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--disable-new-dtags")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic ") # -Wconversion
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a ") # -fcoroutines ")
 #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-function -Wno-unused")
-#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -pthread -march=native")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -pthread -march=native")
 #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-var-tracking-assignments")
 #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,undefined")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -fno-omit-frame-pointer -O0 -pthread -march=x86-64")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -fno-omit-frame-pointer -O0 -pthread -march=x86-64")
 #SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftemplate-depth=19000")
 
 ADD_EXECUTABLE(test.exe test.cpp 
