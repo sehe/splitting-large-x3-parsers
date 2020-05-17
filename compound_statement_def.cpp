@@ -1,13 +1,6 @@
 #include "parser_declarations.hpp"
 #include "parser_configuration.hpp"
 
-namespace parser {
-    static compound_statement_type compound_statement_ = "compound_statement";
-    static auto compound_statement__def = '{' > *statement() > '}';
-    BOOST_SPIRIT_DEFINE(compound_statement_);
-} // namespace parser
-
-namespace parser {
-    BOOST_SPIRIT_INSTANTIATE(compound_statement_type, iterator_type, context_type);
-    parser::compound_statement_type compound_statement() { return parser::compound_statement_; };
-}
+X3_DEFINE_AND_INSTANTIATE(compound_statement,
+    '{' > *statement() > '}'
+)

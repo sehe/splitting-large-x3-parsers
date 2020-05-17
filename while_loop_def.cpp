@@ -1,13 +1,6 @@
 #include "parser_declarations.hpp"
 #include "parser_configuration.hpp"
 
-namespace parser {
-    static while_loop_type while_loop_ = "while_loop";
-    static auto while_loop__def = "" > expression() > control_block_body();
-    BOOST_SPIRIT_DEFINE(while_loop_);
-} // namespace parser
-
-namespace parser {
-    BOOST_SPIRIT_INSTANTIATE(while_loop_type, iterator_type, context_type);
-    parser::while_loop_type while_loop() { return parser::while_loop_; };
-}
+X3_DEFINE_AND_INSTANTIATE(while_loop,
+    "" > expression() > control_block_body()
+)
